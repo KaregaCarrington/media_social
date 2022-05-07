@@ -1,0 +1,42 @@
+.post__avatar {
+	height: 30px;
+	width: 30px;
+	margin-left: 20px;
+}
+
+.post__avatar > img {
+	max-width: 30px;
+}
+
+
+
+.post__header__text > h3 {
+	display: flex;
+	font-size: 15px;
+	margin-bottom: 15px;
+	color: white;
+}
+
+.post__header__description {
+	margin-bottom: 10px;
+	font-size: 15px;
+}
+
+.post {
+	display: flex;
+	margin-top: 20px;
+	align-items: flex-start;
+	border-bottom: 1px solid dimgray;
+	padding-bottom: 10px;
+	color: white;
+}
+
+.post__body {
+	flex: 1;
+	padding: 10px;
+	max-width: 70%;
+}
+
+.post__body > img {
+	width: 100%;
+}

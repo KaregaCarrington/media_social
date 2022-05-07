@@ -1,0 +1,20 @@
+.sidebarOption {
+	align-items: center;
+	text-align: center;
+	padding: 3px;
+}
+
+.sidebarOption > h2 {
+	font-size: 20px;
+	font-weight: 800;
+	padding-right: 20px;
+	padding-left: 20px;
+	padding-top: 5px;
+	padding-bottom: 20px;
+	color: white;
+	border-bottom: 1px solid #4d96fb;
+}
+
+h2:hover {
+	color: #4d96fb !important;
+}

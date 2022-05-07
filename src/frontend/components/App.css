@@ -1,0 +1,64 @@
+@import '~antd/dist/antd.css';
+
+nav {
+    
+    
+}
+
+.app {
+  display: flex;
+  height: 100vh;
+  max-width: 2000px;
+  margin-left: auto;
+  margin-right: auto;
+  --main-color: #4d96fb;
+}
+
+
+.ant-tabs-top > .ant-tabs-nav::before {
+    border-bottom: 0px;
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: white;
+    text-shadow: 0 0 0.25px currentcolor;
+}
+
+.ant-tabs-tab-btn:focus {
+    color: red;
+}
+
+.ant-tabs-tab {
+    color: rgb(125, 125, 125);
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+.ant-tabs-tab:hover {
+    color: #4d96fb;
+}
+
+.ant-tabs-ink-bar {
+    background: #1DB954;
+    width: 10px;
+}
+
+.ant-slider-track {
+    background-color: #1DB954;
+}
+
+.ant-slider:hover .ant-slider-track {
+    background-color: #1DB954;
+}
+
+.ant-slider-handle {
+    border: 0px
+}
+
+.ant-slider-rail {
+    background-color: #3E3E3E;
+}
+
+
+
+    
