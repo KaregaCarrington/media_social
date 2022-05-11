@@ -45,25 +45,6 @@
     <script>
       // connect to Moralis server
 
-      const serverUrl = "https://ruk2roswd0b9.usemoralis.com:2053/server";
-      const appId = "CWiZKhBbyit1f5BrosRq5ma2RhfjRNCHJR42Y6lN";
-      Moralis.start({ serverUrl, appId });
-
-      async function login() {
-        let user = Moralis.User.current();
-        if (!user) {
-          user = await Moralis.authenticate();
-        }
-        console.log("logged in user:", user);
-      }
-
-      async function logOut() {
-        await Moralis.User.logOut();
-        console.log("logged out");
-      }
-
-      document.getElementById("btn-login").onclick = login;
-      document.getElementById("btn-logout").onclick = logOut;
 
     </script>
   </body>

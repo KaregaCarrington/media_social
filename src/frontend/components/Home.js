@@ -70,8 +70,8 @@ const Home = () => {
 		    		<input type="text" id="songName" placeholder="song name"></input>
 		    		<input type="text" id="albumName" placeholder="album name"></input>
 		    		<input type="number" id="price" placeholder="price"></input>
-		    		<label for="createItemFile" >Select File</label>
-		    		<input type="file" id='itemFile' ></input>
+		    		<label for="createItemFile"></label>
+		    		<input type="file" id='itemFile'></input>
 		    		<button id="btnCreateItem">Create your NFT</button>
 		    		<button id="btnCloseItem">Close</button>
 		    	</div>
