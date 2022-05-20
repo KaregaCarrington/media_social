@@ -1,34 +1,41 @@
+import React, { useEffect } from 'react';
 import './App.css';
+import { useMoralis } from "react-moralis";
 import Sidebar from './Sidebar.js';
 import Home from './Home';
 import Album from './Album';
 import { BrowserRouter as Router, Routes, Route, } from 'react-router-dom';
 import { useState } from 'react';
-import Create from './Create'
 
 
 const App = () => {
 
-  const [walletAddress, setWalletAddress] = useState('');
+  const { authenticate, isAuthenticated, isAuthenticating, user, account, logout } = useMoralis();
 
-  async function requestAccount() {
-    console.log('Requesting Account...')
-
-    if(window.ethereum) {
-      console.log('detected')
-
-      try {
-        const accounts = await window.ethereum.request({
-          method: 'eth_requestAccounts',
-        });
-        setWalletAddress(accounts[0]);
-      } catch (error) {
-        console.log('error connecting...')
-      }
-
-    } else {
-      console.log('meta mask not detected')
+    useEffect(() => {
+    if (isAuthenticated) {
+      console.log("authenticated")
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticated]);
+
+    const login = async () => {
+      if (!isAuthenticated) {
+
+        await authenticate({signingMessage: "Log in using Moralis" })
+          .then(function (user) {
+            console.log("logged in user:", user);
+            console.log(user.get("ethAddress"));
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
+    }
+
+    const logOut = async () => {
+      await logout();
+      console.log("logged out");
   }
 
   
@@ -38,15 +45,14 @@ const App = () => {
     <Router>
         <div class="app">
           <header>
-            <button onClick={requestAccount } >Connect Wallet</button>
-            <h3>Wallet Address: {walletAddress} </h3>
+            <button onClick={login}>Moralis Metamask Login</button>
+            <button onClick={logOut} disabled={isAuthenticating}>Logout</button>
           </header>
           
           <Sidebar />
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/album' element={<Album />} /> 
-            <Route path='/createnft' element={<Create />} />
           </Routes>
         </div>
     </Router>
@@ -56,19 +62,4 @@ const App = () => {
 export default App;
 
 
-
-// <header className="App-header">
-//   <img src={logo} className="App-logo" alt="logo" />
-//   <p>
-//     Edit <code>src/App.js</code> and save to reload.
-//   </p>
-//   <a
-//     className="App-link"
-//     href="https://reactjs.org"
-//     target="_blank"
-//     rel="noopener noreferrer"
-//   >
-//     Learn React
-//   </a>
-// </header>
 
