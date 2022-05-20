@@ -4,8 +4,10 @@ import './Sidebar.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 const Sidebar = () => {
+
 	return (
-		<div class='sidebar' >			
+		<div class='sidebar' >
+      					
         	<Link to="/">
     			<SidebarOption text='Home' />
   			</Link>
@@ -15,6 +17,7 @@ const Sidebar = () => {
   			<Link to="/createnft">
     			<SidebarOption text='Add Music' />
   			</Link>
+
 		</div>
 	);
 }

@@ -56,6 +56,10 @@
   color: black;
 }
 
+#uploads {
+  margin-left: 400px;
+}
+
 #createItem > button {
   margin-left: 600px;
   margin-right: 600px;
