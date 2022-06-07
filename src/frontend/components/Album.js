@@ -4,7 +4,9 @@ import { useLocation } from 'react-router-dom';
 import { ClockCircleOutlined } from '@ant-design/icons';
 
 const Album = () => {
+
 	const {state: album} = useLocation();
+	
 
 	return (
 		<div class='all__pages'>

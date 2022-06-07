@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import Moralis from 'moralis';
-import { useMoralis } from "react-moralis";
 import './Home.css';
 import Postbox from './Postbox.js';
 import Post from './Post.js';
@@ -15,6 +14,18 @@ const { TabPane } = Tabs;
 
 
 const Home = () => {
+
+	
+	const artistName = useRef();
+
+	const songName = useRef();
+
+	const albumName = useRef();
+
+	const yearDate = useRef();
+
+	const priceAmount = useRef();
+
 
 	const uploadImage = async () => {
 		const pictureInput = document.getElementById('pictureInput');
@@ -38,16 +49,18 @@ const Home = () => {
 
 	const uploadMetadata = async (albumCover, music) => {
 		
-		const artistName = document.getElementById('artistName');
-		const songName = document.getElementById('songName');
-		const albumName = document.getElementById('albumName');
-		const price = document.getElementById('price');
+		const artistRef = artistName.current;
+		const songRef = songName.current;
+		const albumRef = albumName.current;
+		const yearRef = yearDate.current;
+		const priceRef = priceAmount.current;
 
 		const metadata = {
-			'artistName': artistName,
-			'songName' : songName,
-			'albumName' : albumName,
-			'price' : price,
+			'artistName': artistRef,
+			'songName' : songRef,
+			'albumName' : albumRef,
+			'year' : yearRef,
+			'price' : priceRef,
 			'image' : albumCover,
 			'animation_url' : music
 		}
@@ -62,7 +75,7 @@ const Home = () => {
 	const createNFT = async () => {
 		const albumCover = await uploadImage();
 		const music = await uploadMusic();
-		await uploadMetadata(albumCover, music);
+		library.push(await uploadMetadata(albumCover, music));
 	}
 
 
@@ -100,7 +113,7 @@ const Home = () => {
 		      	{library.map((e) => (
 		      		<Link to='/album' state={e} class='albumSelection' >
 		      			<img src={e.image} alt='album cover' style={{ width: '150px', marginBottom: '10px' }}></img>
-		      			<p>{e.title}</p>
+		      			<p>{e.albumName}</p>
 		      		</Link>
 		      	))};
 		      </div>
@@ -116,10 +129,11 @@ const Home = () => {
 		    >
 		    	<div id="createItem">
 		    		<h4>Create Item</h4>
-		    		<input type="text" id="artistName" name="artistName" placeholder="artist name"></input>
-		    		<input type="text" id="songName" placeholder="song name"></input>
-		    		<input type="text" id="albumName" placeholder="album name"></input>
-		    		<input type="number" id="price" placeholder="price"></input>
+		    		<input ref={artistName} placeholder="artist" type="text"></input>
+		    		<input ref={songName} type="text" placeholder="song"></input>
+		    		<input ref={albumName} type="text" placeholder="album"></input>
+		    		<input ref={yearDate} type="number" placeholder="year"></input>
+		    		<input ref={priceAmount} type="number" placeholder="price"></input>
 		    		
 		    		<div id='uploads'>
 		    			picture
@@ -128,7 +142,7 @@ const Home = () => {
 		    			<input type="file" id='musicInput'></input>
 		    		</div>
 
-		    		<button onclick="createNFT()">Create your NFT</button>
+		    		<button onClick={createNFT}>Create your NFT</button>
 		    		<button id="btnCloseItem">Close</button>
 		    	</div>
 		    </TabPane>
